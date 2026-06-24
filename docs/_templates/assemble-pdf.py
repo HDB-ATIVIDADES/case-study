@@ -1,6 +1,5 @@
 import re
 import sys
-import glob
 import urllib.request
 
 
@@ -41,47 +40,31 @@ def gen_pending_table(items):
     return '\n'.join(rows) + '\n'
 
 
-def bump_heading(line):
-    return re.sub(r'^(#+)', r'\1##', line)
-
-
 def main():
     skeleton = sys.stdin.readlines()
     todo_pending = read_todo_pending()
     ci_yml = fetch_ci_yml()
-
-    etapa_dirs = {}
-    for n in range(1, 8):
-        etapa_dirs[n] = sorted(glob.glob(f"docs/etapa-{n}/*.md"))
+    etapa_count = 0
 
     out = []
-    inside_etapa = False
-
     for line in skeleton:
         m = re.match(r'^## Etapa (\d+)', line)
         if m:
-            inside_etapa = True
-            num = int(m.group(1))
-            if num > 1:
+            etapa_count += 1
+            if etapa_count > 1:
                 out.append('\\newpage\n')
             out.append(line)
-            for fname in etapa_dirs.get(num, []):
-                with open(fname) as f:
-                    for fline in f:
-                        out.append(bump_heading(fline))
-                out.append('\n')
             continue
 
-        if inside_etapa and line.strip() == '':
+        if re.match(r'^## Pipeline CI/CD Final', line):
+            out.append('\\newpage\n')
             out.append(line)
             continue
 
-        if inside_etapa and line.startswith('## '):
-            inside_etapa = False
-
         if '{{CI_YML}}' in line:
-            ci_yml_block = '```yaml\n' + ci_yml + '\n```\n'
-            out.append(ci_yml_block)
+            out.append('```yaml\n')
+            out.append(ci_yml)
+            out.append('\n```\n')
             continue
 
         if '<!-- PENDENCIAS -->' in line:
