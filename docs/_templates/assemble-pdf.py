@@ -1,5 +1,6 @@
 import re
 import sys
+import base64
 import urllib.request
 
 
@@ -25,6 +26,20 @@ def read_todo_pending():
     except FileNotFoundError:
         pass
     return items
+
+
+def render_mermaid(text):
+    def to_image(m):
+        diagram = m.group(1)
+        encoded = base64.urlsafe_b64encode(diagram.encode('utf-8')).decode('ascii')
+        url = f'https://kroki.io/mermaid/svg/{encoded}'
+        return f'![Diagrama Mermaid]({url})'
+    return re.sub(
+        r'^```\{mermaid\}\s*\n(.*?)\n^```\s*$',
+        to_image,
+        text,
+        flags=re.MULTILINE | re.DOTALL,
+    )
 
 
 def gen_pending_table(items):
@@ -73,7 +88,9 @@ def main():
 
         out.append(line)
 
-    sys.stdout.write(''.join(out))
+    text = ''.join(out)
+    text = render_mermaid(text)
+    sys.stdout.write(text)
 
 
 if __name__ == '__main__':
