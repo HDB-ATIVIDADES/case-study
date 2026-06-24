@@ -1,7 +1,5 @@
 # Estudo de Caso: DevSecOps
 
-ALUNO: FRANCISCO WAGNER FERNANDES DE SOUSA
-
 Repositórios:
 
 - **Código:** [github.com/HDB-ATIVIDADES/Task-Manager-using-Flask](https://github.com/HDB-ATIVIDADES/Task-Manager-using-Flask)

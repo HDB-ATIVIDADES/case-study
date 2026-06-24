@@ -2,8 +2,6 @@
 
 ![Hackers do Bem](docs/assets/logo-hb.svg)
 
-**Aluno:** Francisco Wagner Fernandes de Sousa
-
 Aplicação de conceitos **DevOps** e **DevSecOps** em um sistema de gerenciamento de tarefas pessoais desenvolvido com **Flask**, containerizado com **Docker**, com pipeline **CI/CD** completo, análise de segurança (**SAST/DAST**), e monitoramento com **Promtail + Loki + Grafana**.
 
 ## Badges
