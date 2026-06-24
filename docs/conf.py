@@ -1,7 +1,7 @@
 import os
 
 project = "Estudo de Caso: DevSecOps"
-author = "wagner-sousa"
+author = "Wagner Sousa"
 html_title = "Estudo de Caso: DevSecOps"
 html_logo = "assets/logo-hb.svg"
 extensions = ["myst_parser", "sphinxcontrib.mermaid"]
