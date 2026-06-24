@@ -5,7 +5,7 @@ import urllib.request
 
 
 def fetch_ci_yml():
-    url = 'https://raw.githubusercontent.com/HDB-ATIVIDADES/Task-Manager-using-Flask/main/.github/workflows/ci.yml'
+    url = 'https://raw.githubusercontent.com/HDB-ATIVIDADES/Task-Manager-using-Flask/refs/heads/master/.github/workflows/ci.yml'
     try:
         with urllib.request.urlopen(url, timeout=15) as resp:
             return resp.read().decode()
