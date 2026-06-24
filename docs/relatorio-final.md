@@ -1,3 +1,7 @@
+---
+title: "Estudo de Caso: DevSecOps"
+---
+
 # Estudo de Caso: DevSecOps
 
 ALUNO: FRANCISCO WAGNER FERNANDES DE SOUSA
@@ -114,8 +118,6 @@ if task.author != current_user:
 
 **Ferramentas:** pytest 8.4.2, SQLite `:memory:`, CSRF desabilitado em testes.
 
-\footnotesize
-
 ```bash
 tests/
  +-- conftest.py          # Fixtures (client, auth_client, user, user_with_tasks)
@@ -123,8 +125,6 @@ tests/
  +-- test_models.py       # 8 testes -- User, Task, relacionamentos
  +-- test_routes.py       # 26 testes -- auth, CRUD, isolamento, syslog, conta
 ```
-  
-\normalsize
 
 **Resultado:** 43 passed, 1 warning (FSADeprecationWarning) em 10.28s.
 
@@ -161,16 +161,12 @@ Classes de teste:
 
 ### Bandit
 
-\footnotesize
-
 ```bash
 Total issues: 90
   HIGH:   0  [OK] (pipeline passa)
   MEDIUM: 1  — B104 (SECRET_KEY hardcoded em __init__.py:11)
   LOW:   89  — B101 (assert em testes), B105/B106 (strings hardcoded)
 ```
-
-\normalsize
 
 **Threshold:** pipeline falha apenas em HIGH. Como não há nenhum, o job passa.
 
@@ -263,7 +259,7 @@ Script Python com `urllib` (sem dependências externas) que percorre: GET /login
 
 ### Arquitetura
 
-```mermaid
+```{mermaid}
 flowchart LR
   A[Flask App<br/>FileHandler] --> B[logs/app.log]
   B --> C[Promtail]
@@ -295,7 +291,7 @@ O Flask escreve logs simultaneamente para syslog (**/dev/log**) e para arquivo (
 
 ### Alerta de Brute-force
 
-```logql
+```text
 count_over_time({job="flask-app"} |= "LOGIN_FAILURE" [1m]) > 5
 ```
 
@@ -306,8 +302,6 @@ Gatilho: mais de 5 falhas de login no último minuto. Provisionado automaticamen
 ## Pipeline CI/CD Final
 
 Arquivo `.github/workflows/ci.yml` — 8 jobs: build, test, sast, dast, deploy-review, deploy-staging, dast-staging, monitoring.
-
-\footnotesize
 
 ```yaml
 name: CI/CD
@@ -506,8 +500,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with: {name: monitoring-report, path: monitoring-dashboard.json}
 ```
-
-\normalsize
 
 ## Considerações Finais
 

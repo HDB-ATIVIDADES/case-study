@@ -1,0 +1,13 @@
+services:
+  md-to-pdf:
+    image: pandoc/latex:latest
+    container_name: hdb-pdf-generator
+    working_dir: /data
+    volumes:
+      - /home/wagner/github/hdb-case-study:/data
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      pandoc docs/relatorio-final.md -o docs/relatorio-final.pdf
+      -V geometry:margin=1.8cm
+      -V fontsize=10pt
+      --pdf-engine=xelatex
