@@ -1,7 +1,3 @@
----
-title: "Estudo de Caso: DevSecOps"
----
-
 # Estudo de Caso: DevSecOps
 
 Repositórios:
