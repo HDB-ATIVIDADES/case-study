@@ -15,7 +15,7 @@ Aplicação de conceitos **DevOps** e **DevSecOps** em um sistema de gerenciamen
 ## Repositórios
 
 - [github.com/HDB-ATIVIDADES/Task-Manager-using-Flask](https://github.com/HDB-ATIVIDADES/Task-Manager-using-Flask) — Código da aplicação, pipeline CI/CD e infraestrutura
-- [github.com/anomalyco/hdb-case-study](https://github.com/anomalyco/hdb-case-study) — Documentação e relatório final
+- [github.com/HDB-ATIVIDADES/case-study](https://github.com/HDB-ATIVIDADES/case-study) — Documentação e relatório final
 
 ## Pull Requests Relevantes
 
@@ -77,7 +77,7 @@ flowchart LR
 
 ## Site / GitHub Pages
 
-Documentação completa disponível em: [https://anomalyco.github.io/hdb-case-study/](https://anomalyco.github.io/hdb-case-study/)
+Documentação completa disponível em: [https://HDB-ATIVIDADES.github.io/case-study/](https://HDB-ATIVIDADES.github.io/case-study/)
 
 ---
 

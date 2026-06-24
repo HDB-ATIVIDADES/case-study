@@ -5,7 +5,7 @@ ALUNO: FRANCISCO WAGNER FERNANDES DE SOUSA
 Repositórios:
 
 - **Código:** [github.com/HDB-ATIVIDADES/Task-Manager-using-Flask](https://github.com/HDB-ATIVIDADES/Task-Manager-using-Flask)
-- **Documentação:** [github.com/anomalyco/hdb-case-study](https://github.com/anomalyco/hdb-case-study)
+- **Documentação:** [github.com/HDB-ATIVIDADES/case-study](https://github.com/HDB-ATIVIDADES/case-study)
 
 ## Etapa 1: Planejamento e Requisitos
 
