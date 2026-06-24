@@ -82,6 +82,11 @@ def main():
             out.append('\n```\n')
             continue
 
+        if re.match(r'^## Considerações Finais', line):
+            out.append('\\newpage\n')
+            out.append(line)
+            continue
+
         if '<!-- PENDENCIAS -->' in line:
             out.append(gen_pending_table(todo_pending))
             continue
