@@ -30,11 +30,11 @@ jobs:
       - name: Build HTML site
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+          sudo apt-get install -y -qq pandoc texlive-xetex texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
           sphinx-build -b html docs _build/html
           python3 docs/_templates/assemble-pdf.py < docs/relatorio-final.md | \
           pandoc -o _build/html/relatorio-final.pdf \
-            -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=pdflatex
+            -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=xelatex
         env:
           SITE_URL: https://hdb-atividades.github.io/case-study
 
