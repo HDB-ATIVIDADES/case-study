@@ -39,6 +39,8 @@ Sistema Flask de gerenciamento de tarefas com autenticação obrigatória, log v
 | AM-07 | Escalação horizontal | Alto | Verificação de ownership |
 | AM-08 | Vazamento em logs | Médio | Sem dados sensíveis em logs |
 
+\newpage
+
 ## Etapa 2: Containerização e Modificações de Segurança
 
 ### Containerização
@@ -106,6 +108,8 @@ if task.author != current_user:
 
 **Lições aprendidas:** A migração de `@login_required` (decorator por rota) para `before_request` (middleware global) simplificou a manutenção e eliminou o risco de esquecer um decorator em rota nova.
 
+\newpage
+
 ## Etapa 3: Testes e Pipeline CI
 
 ### Testes Automatizados
@@ -149,6 +153,8 @@ Classes de teste:
 
 **Lições aprendidas:** O cache de dependências pip reduziu o tempo de instalação de ~2 min para ~10s nos jobs subsequentes.
 
+\newpage
+
 ## Etapa 4: Análise Estática de Segurança (SAST)
 
 **Ferramentas:** Bandit (código) e pip-audit (dependências).
@@ -178,6 +184,8 @@ Total issues: 90
 Atualizar qualquer um desses pacotes quebraria a aplicação devido a incompatibilidades na cadeia de dependências.
 
 **Lições aprendidas:** O Bandit B104 (SECRET_KEY hardcoded) é um lembrete de que configurações sensíveis devem vir de variáveis de ambiente, não do código-fonte. As 16 vulns do pip-audit demonstram o trade-off entre estabilidade funcional e segurança de dependências.
+
+\newpage
 
 ## Etapa 5: Análise Dinâmica de Segurança (DAST)
 
@@ -218,6 +226,8 @@ Nenhum alerta HIGH foi encontrado. Os alertas MEDIUM e LOW são comportamentos e
 
 **Lições aprendidas:** O ZAP baseline scan é eficaz para detectar configurações incorretas de segurança (headers ausentes, informações vazadas). Em produção, seria necessário adicionar HTTPS e headers de segurança (CSP, HSTS, X-Frame-Options).
 
+\newpage
+
 ## Etapa 6: Entrega Contínua (CD)
 
 **Ferramenta:** GitHub Actions + GitFlow.
@@ -246,6 +256,8 @@ Nenhum alerta HIGH foi encontrado. Os alertas MEDIUM e LOW são comportamentos e
 Script Python com `urllib` (sem dependências externas) que percorre: GET /login → POST /register → POST /login → POST /add_task → GET /all_tasks → GET /logout.
 
 **Lições aprendidas:** A extração de CSRF token do formulário HTML foi necessária porque o Flask-WTF protege todos os formulários por padrão. O smoke test demonstrou que o CD precisa de validação funcional, não apenas de build.
+
+\newpage
 
 ## Etapa 7: Monitoramento (Promtail + Loki + Grafana)
 
