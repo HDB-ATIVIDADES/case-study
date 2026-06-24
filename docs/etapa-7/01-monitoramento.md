@@ -1,7 +1,3 @@
----
-title: "Monitoramento (Promtail + Loki + Grafana)"
----
-
 # Etapa 7: Monitoramento (Promtail + Loki + Grafana)
 
 ## Stack de Monitoramento

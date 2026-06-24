@@ -1,7 +1,3 @@
----
-title: "Análise de Requisitos"
----
-
 # Análise de Requisitos
 
 ## Requisitos Obrigatórios

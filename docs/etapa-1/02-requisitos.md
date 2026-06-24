@@ -1,7 +1,3 @@
----
-title: "Requisitos Funcionais e Não Funcionais"
----
-
 # Requisitos Funcionais e Não Funcionais
 
 ## Requisitos Funcionais (RF)

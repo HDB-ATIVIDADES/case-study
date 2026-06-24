@@ -1,7 +1,3 @@
----
-title: "Enunciado do Caso"
----
-
 # Estudo de Caso: Criação, Implementação e Segurança de um Sistema de Gestão de Tarefas Pessoais
 
 ## Introdução

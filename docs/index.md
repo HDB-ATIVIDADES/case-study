@@ -1,7 +1,3 @@
----
-title: "Estudo de Caso: DevSecOps"
----
-
 # Estudo de Caso: DevSecOps
 
 ![Logo Hackers do Bem](assets/logo-hb.svg)

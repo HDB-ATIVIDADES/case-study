@@ -1,7 +1,3 @@
----
-title: "Modificações de Segurança"
----
-
 # Implementação — Modificações de Segurança (Etapa 2, parte 2)
 
 ## 1. Autenticação global via `before_request`

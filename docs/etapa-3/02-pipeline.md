@@ -1,7 +1,3 @@
----
-title: "Pipeline CI"
----
-
 # Pipeline CI
 
 ## Ferramenta

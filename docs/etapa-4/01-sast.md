@@ -1,7 +1,3 @@
----
-title: "Análise Estática de Segurança (SAST)"
----
-
 # Etapa 4: Análise Estática de Segurança (SAST)
 
 ## Ferramentas

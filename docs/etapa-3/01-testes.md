@@ -1,7 +1,3 @@
----
-title: "Testes Automatizados"
----
-
 # Testes Automatizados
 
 ## Ferramentas

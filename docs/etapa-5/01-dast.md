@@ -1,7 +1,3 @@
----
-title: "Análise Dinâmica de Segurança (DAST)"
----
-
 # Etapa 5: Análise Dinâmica de Segurança (DAST)
 
 ## Ferramenta

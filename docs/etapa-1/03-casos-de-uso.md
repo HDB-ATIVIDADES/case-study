@@ -1,7 +1,3 @@
----
-title: "Casos de Uso"
----
-
 # Casos de Uso
 
 **Ator principal:** Usuário

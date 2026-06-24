@@ -1,7 +1,3 @@
----
-title: "Containerização e Execução"
----
-
 # Etapa 2: Containerização e Execução
 
 ## Objetivo

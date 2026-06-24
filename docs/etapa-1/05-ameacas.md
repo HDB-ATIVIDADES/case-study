@@ -1,7 +1,3 @@
----
-title: "Ameaças de Segurança e Medidas de Mitigação"
----
-
 # Ameaças de Segurança e Medidas de Mitigação
 
 ## Matriz de Ameaças
