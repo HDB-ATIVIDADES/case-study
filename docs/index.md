@@ -1,7 +1,5 @@
 # Estudo de Caso: DevSecOps
 
-![Logo Hackers do Bem](assets/logo-hb.svg)
-
 Aplicação de conceitos DevOps e DevSecOps em um sistema de gerenciamento de tarefas Flask.
 
 ## Documentos

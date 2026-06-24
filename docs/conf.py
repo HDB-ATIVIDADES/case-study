@@ -1,6 +1,8 @@
 import os
 
 project = "Estudo de Caso: DevSecOps"
+html_title = "Estudo de Caso: DevSecOps"
+html_logo = "assets/logo-hb.svg"
 extensions = ["myst_parser", "sphinxcontrib.mermaid"]
 html_theme = "sphinx_book_theme"
 html_theme_options = {
