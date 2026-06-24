@@ -32,7 +32,7 @@ def render_mermaid(text):
     def to_image(m):
         diagram = m.group(1)
         encoded = base64.urlsafe_b64encode(diagram.encode('utf-8')).decode('ascii')
-        url = f'https://kroki.io/mermaid/svg/{encoded}'
+        url = f'https://mermaid.ink/svg/{encoded}'
         return f'![Diagrama Mermaid]({url})'
     return re.sub(
         r'^```\{mermaid\}\s*\n(.*?)\n^```\s*$',
