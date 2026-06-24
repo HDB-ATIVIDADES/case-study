@@ -26,10 +26,10 @@ jobs:
 
       - name: Generate PDF from relatório
         run: |
-          docker run --rm -v "$PWD":/data pandoc/latex:latest \
-            /bin/sh -c "\
-            pandoc docs/relatorio-final.md -o docs/relatorio-final.pdf \
-            -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=xelatex"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+          pandoc docs/relatorio-final.md -o docs/relatorio-final.pdf \
+            -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=pdflatex
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
