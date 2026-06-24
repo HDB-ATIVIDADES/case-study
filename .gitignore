@@ -9,6 +9,10 @@ node_modules/
 *.swp
 *.swo
 
+# Sphinx build artifacts
+_build*/
+_build_docs/
+
 # OS
 .DS_Store
 Thumbs.db
