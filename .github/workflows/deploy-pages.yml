@@ -33,7 +33,9 @@ jobs:
           sudo apt-get install -y -qq pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
           sphinx-build -b html docs _build/html
           pandoc docs/relatorio-final.md -o _build/html/relatorio-final.pdf \
-            -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=pdflatex
+            -H docs/_templates/abnt-pdf.tex \
+            -V geometry:"top=3cm,bottom=2cm,left=3cm,right=2cm" \
+            -V fontsize=12pt --pdf-engine=pdflatex
         env:
           SITE_URL: https://hdb-atividades.github.io/case-study
 

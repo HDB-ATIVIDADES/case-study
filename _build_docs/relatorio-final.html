@@ -1,0 +1,1836 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estudo de Caso: DevSecOps &#8212; Documentação Estudo de Caso: DevSecOps </title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=71a39b36"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'relatorio-final';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Análise de Requisitos" href="etapa-1/01-analise.html" />
+    <link rel="prev" title="Estudo de Caso" href="CASO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Documentação Estudo de Caso: DevSecOps </p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="CASO.html">Estudo de Caso</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Relatório Final</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 1 — Planejamento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/01-analise.html">Análise de Requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/02-requisitos.html">Requisitos Funcionais e Não Funcionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/03-casos-de-uso.html">Casos de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/04-fluxos-de-sistema.html">Fluxos de Sistema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/05-ameacas.html">Ameaças de Segurança e Medidas de Mitigação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 2 — Containerização</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-2/01-container-execucao.html">Etapa 2: Containerização e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-2/02-modificacoes-seguranca.html">Implementação — Modificações de Segurança (Etapa 2, parte 2)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 3 — Testes e Pipeline CI</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-3/01-testes.html">Testes Automatizados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-3/02-pipeline.html">Pipeline CI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 4 — SAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-4/01-sast.html">Etapa 4: Análise Estática de Segurança (SAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 5 — DAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-5/01-dast.html">Etapa 5: Análise Dinâmica de Segurança (DAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 6 — CD</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-6/01-cd.html">Etapa 6: Entrega Contínua (CD)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 7 — Monitoramento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-7/01-monitoramento.html">Etapa 7: Monitoramento (Promtail + Loki + Grafana)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/relatorio-final.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estudo de Caso: DevSecOps</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-1-planejamento-e-requisitos">Etapa 1: Planejamento e Requisitos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-requisitos">Análise de Requisitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-uso">Casos de Uso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-ameacas">Matriz de Ameaças</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-2-containerizacao-e-modificacoes-de-seguranca">Etapa 2: Containerização e Modificações de Segurança</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containerizacao">Containerização</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificacoes-de-seguranca">Modificações de Segurança</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacao-global-via-before-request">Autenticação global via before_request</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#syslog">Syslog</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacao-de-dono-da-tarefa">Verificação de dono da tarefa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">Resultados</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-3-testes-e-pipeline-ci">Etapa 3: Testes e Pipeline CI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-automatizados">Testes Automatizados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ci">Pipeline CI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-4-analise-estatica-de-seguranca-sast">Etapa 4: Análise Estática de Segurança (SAST)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bandit">Bandit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-audit">pip-audit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-5-analise-dinamica-de-seguranca-dast">Etapa 5: Análise Dinâmica de Segurança (DAST)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alertas-medium">Alertas MEDIUM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alertas-low-amostra">Alertas LOW (amostra)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-6-entrega-continua-cd">Etapa 6: Entrega Contínua (CD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gitflow">GitFlow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-de-cd">Jobs de CD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoke-test">Smoke Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-7-monitoramento-promtail-loki-grafana">Etapa 7: Monitoramento (Promtail + Loki + Grafana)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitetura">Arquitetura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicos-no-docker-compose">Serviços no Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-7-paineis">Dashboard — 7 Painéis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerta-de-brute-force">Alerta de Brute-force</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ci-cd-final">Pipeline CI/CD Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riscos-aceitos">Riscos Aceitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pendencias-tecnicas">Pendências Técnicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ferramentas-utilizadas-visao-geral">Ferramentas Utilizadas (visão geral)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="estudo-de-caso-devsecops">
+<h1>Estudo de Caso: DevSecOps<a class="headerlink" href="#estudo-de-caso-devsecops" title="Link para este cabeçalho">#</a></h1>
+<p>Repositórios:</p>
+<ul class="simple">
+<li><p><strong>Código:</strong> <a class="reference external" href="https://github.com/HDB-ATIVIDADES/Task-Manager-using-Flask">github.com/HDB-ATIVIDADES/Task-Manager-using-Flask</a></p></li>
+<li><p><strong>Documentação:</strong> <a class="reference external" href="https://github.com/HDB-ATIVIDADES/case-study">github.com/HDB-ATIVIDADES/case-study</a></p></li>
+</ul>
+<section id="etapa-1-planejamento-e-requisitos">
+<h2>Etapa 1: Planejamento e Requisitos<a class="headerlink" href="#etapa-1-planejamento-e-requisitos" title="Link para este cabeçalho">#</a></h2>
+<section id="analise-de-requisitos">
+<h3>Análise de Requisitos<a class="headerlink" href="#analise-de-requisitos" title="Link para este cabeçalho">#</a></h3>
+<p>Sistema Flask de gerenciamento de tarefas com autenticação obrigatória, log via syslog e isolamento de dados entre usuários.</p>
+<p><strong>Requisitos Funcionais:</strong> RF-01 a RF-09 — autenticação, CRUD de tarefas, logs de segurança.</p>
+<p><strong>Requisitos Não Funcionais:</strong> RNF-01 a RNF-08 — hash de senhas (bcrypt), ORM parametrizado (SQLAlchemy), container Docker, logs centralizados via syslog.</p>
+</section>
+<section id="casos-de-uso">
+<h3>Casos de Uso<a class="headerlink" href="#casos-de-uso" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Operação</p></th>
+<th class="head"><p>Pré-condição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UC-01</p></td>
+<td><p>Autenticar (login/logout)</p></td>
+<td><p>Não autenticado</p></td>
+</tr>
+<tr class="row-odd"><td><p>UC-02</p></td>
+<td><p>Criar tarefa</p></td>
+<td><p>Autenticado</p></td>
+</tr>
+<tr class="row-even"><td><p>UC-03</p></td>
+<td><p>Visualizar tarefas</p></td>
+<td><p>Autenticado</p></td>
+</tr>
+<tr class="row-odd"><td><p>UC-04</p></td>
+<td><p>Editar tarefa</p></td>
+<td><p>Autenticado + dono</p></td>
+</tr>
+<tr class="row-even"><td><p>UC-05</p></td>
+<td><p>Excluir tarefa</p></td>
+<td><p>Autenticado + dono</p></td>
+</tr>
+<tr class="row-odd"><td><p>UC-06</p></td>
+<td><p>Pesquisar tarefas</p></td>
+<td><p>Autenticado</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="matriz-de-ameacas">
+<h3>Matriz de Ameaças<a class="headerlink" href="#matriz-de-ameacas" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Ameaça</p></th>
+<th class="head"><p>Impacto</p></th>
+<th class="head"><p>Mitigação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AM-01</p></td>
+<td><p>Acesso não autorizado a rotas</p></td>
+<td><p>Alto</p></td>
+<td><p>before_request global</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM-02</p></td>
+<td><p>Força bruta no login</p></td>
+<td><p>Alto</p></td>
+<td><p>Alerta Grafana (rate limit não implementado)</p></td>
+</tr>
+<tr class="row-even"><td><p>AM-03</p></td>
+<td><p>DoS</p></td>
+<td><p>Alto</p></td>
+<td><p>Planejado, não implementado</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM-04</p></td>
+<td><p>Vazamento de dados</p></td>
+<td><p>Alto</p></td>
+<td><p>bcrypt, ORM parametrizado</p></td>
+</tr>
+<tr class="row-even"><td><p>AM-05</p></td>
+<td><p>XSS</p></td>
+<td><p>Médio</p></td>
+<td><p>Sanitização + escaping Jinja2</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM-06</p></td>
+<td><p>SQL Injection</p></td>
+<td><p>Alto</p></td>
+<td><p>SQLAlchemy queries parametrizadas</p></td>
+</tr>
+<tr class="row-even"><td><p>AM-07</p></td>
+<td><p>Escalação horizontal</p></td>
+<td><p>Alto</p></td>
+<td><p>Verificação de ownership</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM-08</p></td>
+<td><p>Vazamento em logs</p></td>
+<td><p>Médio</p></td>
+<td><p>Sem dados sensíveis em logs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="etapa-2-containerizacao-e-modificacoes-de-seguranca">
+<h2>Etapa 2: Containerização e Modificações de Segurança<a class="headerlink" href="#etapa-2-containerizacao-e-modificacoes-de-seguranca" title="Link para este cabeçalho">#</a></h2>
+<section id="containerizacao">
+<h3>Containerização<a class="headerlink" href="#containerizacao" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Ferramentas:</strong> Docker 29.5.3, imagem <code class="docutils literal notranslate"><span class="pre">python:3.9-slim</span></code>, Docker Compose.</p>
+<p>Sem Dockerfile — código montado como volume, dependências instaladas no <code class="docutils literal notranslate"><span class="pre">command</span></code> do Compose.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python:3.9-slim</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;5000:5000&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.:/app</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/dev/log:/dev/log</span>
+<span class="w">    </span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app/todo_project</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sh -c &quot;pip install --no-cache-dir -r /app/requirements.txt &amp;&amp; python run.py&quot;</span>
+</pre></div>
+</div>
+<p><strong>Alterações no <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Flask <code class="docutils literal notranslate"><span class="pre">2.3.2</span> <span class="pre">→</span> <span class="pre">1.1.4</span></code> (compatível com Flask-Login/Bcrypt/WTF)</p></li>
+<li><p>SQLAlchemy <code class="docutils literal notranslate"><span class="pre">&lt;2.0</span></code> (incompatível com Flask-SQLAlchemy 2.4.1)</p></li>
+<li><p>MarkupSafe <code class="docutils literal notranslate"><span class="pre">==2.0.1</span></code> (<code class="docutils literal notranslate"><span class="pre">soft_unicode</span></code> removido no 2.1+)</p></li>
+</ul>
+</section>
+<section id="modificacoes-de-seguranca">
+<h3>Modificações de Segurança<a class="headerlink" href="#modificacoes-de-seguranca" title="Link para este cabeçalho">#</a></h3>
+<section id="autenticacao-global-via-before-request">
+<h4>Autenticação global via before_request<a class="headerlink" href="#autenticacao-global-via-before-request" title="Link para este cabeçalho">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">before_request</span>
+<span class="k">def</span> <span class="nf">require_auth</span><span class="p">():</span>
+    <span class="n">public_routes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">,</span> <span class="s1">&#39;register&#39;</span><span class="p">,</span> <span class="s1">&#39;logout&#39;</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">endpoint</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">public_routes</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">current_user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;UNAUTHORIZED_ACCESS ip=</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">remote_addr</span><span class="si">}</span><span class="s1">...&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="syslog">
+<h4>Syslog<a class="headerlink" href="#syslog" title="Link para este cabeçalho">#</a></h4>
+<p>Handler conectado a <code class="docutils literal notranslate"><span class="pre">/dev/log</span></code> com fallback silencioso:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">syslog_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">SysLogHandler</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;/dev/log&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">syslog_handler</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="verificacao-de-dono-da-tarefa">
+<h4>Verificação de dono da tarefa<a class="headerlink" href="#verificacao-de-dono-da-tarefa" title="Link para este cabeçalho">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">author</span> <span class="o">!=</span> <span class="n">current_user</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SECURITY_VIOLATION...&#39;</span><span class="p">)</span>
+    <span class="n">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="resultados">
+<h4>Resultados<a class="headerlink" href="#resultados" title="Link para este cabeçalho">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Modificação</p></th>
+<th class="head"><p>Efeito</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>before_request global</p></td>
+<td><p>Toda rota protegida, exceto login/register/logout/static</p></td>
+</tr>
+<tr class="row-odd"><td><p>Syslog</p></td>
+<td><p>Eventos de segurança enviados para syslog do host</p></td>
+</tr>
+<tr class="row-even"><td><p>Ownership check</p></td>
+<td><p>Usuário A não pode editr/excluir tarefa do usuário B</p></td>
+</tr>
+<tr class="row-odd"><td><p>8 novos testes</p></td>
+<td><p>Validação automatizada das regras de segurança</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Lições aprendidas:</strong> A migração de <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> (decorator por rota) para <code class="docutils literal notranslate"><span class="pre">before_request</span></code> (middleware global) simplificou a manutenção e eliminou o risco de esquecer um decorator em rota nova.</p>
+</section>
+</section>
+</section>
+<section id="etapa-3-testes-e-pipeline-ci">
+<h2>Etapa 3: Testes e Pipeline CI<a class="headerlink" href="#etapa-3-testes-e-pipeline-ci" title="Link para este cabeçalho">#</a></h2>
+<section id="testes-automatizados">
+<h3>Testes Automatizados<a class="headerlink" href="#testes-automatizados" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Ferramentas:</strong> pytest 8.4.2, SQLite <code class="docutils literal notranslate"><span class="pre">:memory:</span></code>, CSRF desabilitado em testes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tests/
+<span class="w"> </span>+--<span class="w"> </span>conftest.py<span class="w">          </span><span class="c1"># Fixtures (client, auth_client, user, user_with_tasks)</span>
+<span class="w"> </span>+--<span class="w"> </span>test_forms.py<span class="w">        </span><span class="c1"># 9 testes -- validacao de formularios</span>
+<span class="w"> </span>+--<span class="w"> </span>test_models.py<span class="w">       </span><span class="c1"># 8 testes -- User, Task, relacionamentos</span>
+<span class="w"> </span>+--<span class="w"> </span>test_routes.py<span class="w">       </span><span class="c1"># 26 testes -- auth, CRUD, isolamento, syslog, conta</span>
+</pre></div>
+</div>
+<p><strong>Resultado:</strong> 43 passed, 1 warning (FSADeprecationWarning) em 10.28s.</p>
+<p>Classes de teste:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Classe</p></th>
+<th class="head"><p>Testes</p></th>
+<th class="head"><p>O que valida</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TestRegistration</p></td>
+<td><p>4</p></td>
+<td><p>Registro, duplicidade</p></td>
+</tr>
+<tr class="row-odd"><td><p>TestLogin</p></td>
+<td><p>3</p></td>
+<td><p>Login sucesso/falha, logout</p></td>
+</tr>
+<tr class="row-even"><td><p>TestAuthorization</p></td>
+<td><p>5</p></td>
+<td><p>Redirecionamento sem auth</p></td>
+</tr>
+<tr class="row-odd"><td><p>TestTaskCRUD</p></td>
+<td><p>4</p></td>
+<td><p>Criar, listar, editar, excluir</p></td>
+</tr>
+<tr class="row-even"><td><p>TestTaskIsolation</p></td>
+<td><p>2</p></td>
+<td><p>Owner check (403)</p></td>
+</tr>
+<tr class="row-odd"><td><p>TestAccount</p></td>
+<td><p>3</p></td>
+<td><p>Página conta, alterar senha</p></td>
+</tr>
+<tr class="row-even"><td><p>TestSyslog</p></td>
+<td><p>4</p></td>
+<td><p>LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_SUCCESS, OPERATION_SUCCESS</p></td>
+</tr>
+<tr class="row-odd"><td><p>TestForms</p></td>
+<td><p>9</p></td>
+<td><p>Validação dos formulários</p></td>
+</tr>
+<tr class="row-even"><td><p>TestModels</p></td>
+<td><p>8</p></td>
+<td><p>Modelos User e Task</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pipeline-ci">
+<h3>Pipeline CI<a class="headerlink" href="#pipeline-ci" title="Link para este cabeçalho">#</a></h3>
+<p><strong>Ferramenta:</strong> GitHub Actions.</p>
+<p><strong>Jobs iniciais:</strong> <code class="docutils literal notranslate"><span class="pre">build</span></code> → <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Job</p></th>
+<th class="head"><p>Descrição</p></th>
+<th class="head"><p>Timeout</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>build</p></td>
+<td><p>Checkout + Python 3.9 + cache pip + validação</p></td>
+<td><p>10 min</p></td>
+</tr>
+<tr class="row-odd"><td><p>test</p></td>
+<td><p>Instala dependências + 43 testes + jUnit report</p></td>
+<td><p>10 min</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Lições aprendidas:</strong> O cache de dependências pip reduziu o tempo de instalação de ~2 min para ~10s nos jobs subsequentes.</p>
+</section>
+</section>
+<section id="etapa-4-analise-estatica-de-seguranca-sast">
+<h2>Etapa 4: Análise Estática de Segurança (SAST)<a class="headerlink" href="#etapa-4-analise-estatica-de-seguranca-sast" title="Link para este cabeçalho">#</a></h2>
+<p><strong>Ferramentas:</strong> Bandit (código) e pip-audit (dependências).</p>
+<section id="bandit">
+<h3>Bandit<a class="headerlink" href="#bandit" title="Link para este cabeçalho">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Total<span class="w"> </span>issues:<span class="w"> </span><span class="m">90</span>
+<span class="w">  </span>HIGH:<span class="w">   </span><span class="m">0</span><span class="w">  </span><span class="o">[</span>OK<span class="o">]</span><span class="w"> </span><span class="o">(</span>pipeline<span class="w"> </span>passa<span class="o">)</span>
+<span class="w">  </span>MEDIUM:<span class="w"> </span><span class="m">1</span><span class="w">  </span>—<span class="w"> </span>B104<span class="w"> </span><span class="o">(</span>SECRET_KEY<span class="w"> </span>hardcoded<span class="w"> </span>em<span class="w"> </span>__init__.py:11<span class="o">)</span>
+<span class="w">  </span>LOW:<span class="w">   </span><span class="m">89</span><span class="w">  </span>—<span class="w"> </span>B101<span class="w"> </span><span class="o">(</span>assert<span class="w"> </span>em<span class="w"> </span>testes<span class="o">)</span>,<span class="w"> </span>B105/B106<span class="w"> </span><span class="o">(</span>strings<span class="w"> </span>hardcoded<span class="o">)</span>
+</pre></div>
+</div>
+<p><strong>Threshold:</strong> pipeline falha apenas em HIGH. Como não há nenhum, o job passa.</p>
+</section>
+<section id="pip-audit">
+<h3>pip-audit<a class="headerlink" href="#pip-audit" title="Link para este cabeçalho">#</a></h3>
+<p>16 vulnerabilidades conhecidas em 4 pacotes — <strong>todas aceitas como risco</strong> por compatibilidade com Flask 1.1.4.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pacote</p></th>
+<th class="head"><p>Versão</p></th>
+<th class="head"><p>Vulns</p></th>
+<th class="head"><p>Fixação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Flask</p></td>
+<td><p>1.1.4</p></td>
+<td><p>2</p></td>
+<td><p>2.2.5+</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jinja2</p></td>
+<td><p>2.11.3</p></td>
+<td><p>4</p></td>
+<td><p>3.1.3+</p></td>
+</tr>
+<tr class="row-even"><td><p>Werkzeug</p></td>
+<td><p>1.0.1</p></td>
+<td><p>9</p></td>
+<td><p>2.2.3+</p></td>
+</tr>
+<tr class="row-odd"><td><p>pytest</p></td>
+<td><p>7.4.4</p></td>
+<td><p>1</p></td>
+<td><p>9.0.3</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Atualizar qualquer um desses pacotes quebraria a aplicação devido a incompatibilidades na cadeia de dependências.</p>
+<p><strong>Lições aprendidas:</strong> O Bandit B104 (SECRET_KEY hardcoded) é um lembrete de que configurações sensíveis devem vir de variáveis de ambiente, não do código-fonte. As 16 vulns do pip-audit demonstram o trade-off entre estabilidade funcional e segurança de dependências.</p>
+</section>
+</section>
+<section id="etapa-5-analise-dinamica-de-seguranca-dast">
+<h2>Etapa 5: Análise Dinâmica de Segurança (DAST)<a class="headerlink" href="#etapa-5-analise-dinamica-de-seguranca-dast" title="Link para este cabeçalho">#</a></h2>
+<p><strong>Ferramenta:</strong> OWASP ZAP (baseline scan), imagem <code class="docutils literal notranslate"><span class="pre">ghcr.io/zaproxy/zaproxy:stable</span></code>.</p>
+<p>Modo headless, Docker Compose na mesma rede, regras de falso positivo em <code class="docutils literal notranslate"><span class="pre">.zap/rules.tsv</span></code>.</p>
+<section id="id1">
+<h3>Resultados<a class="headerlink" href="#id1" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Métrica</p></th>
+<th class="head"><p>Valor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Alvos</p></td>
+<td><p>1 (<code class="docutils literal notranslate"><span class="pre">http://app:5000</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Duração</p></td>
+<td><p>~3 min</p></td>
+</tr>
+<tr class="row-even"><td><p>Total alertas</p></td>
+<td><p>16 tipos</p></td>
+</tr>
+<tr class="row-odd"><td><p>HIGH</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>MEDIUM</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>LOW</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>INFORMACIONAL</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="alertas-medium">
+<h4>Alertas MEDIUM<a class="headerlink" href="#alertas-medium" title="Link para este cabeçalho">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Alerta</p></th>
+<th class="head"><p>Ocorrências</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10038</p></td>
+<td><p>Content Security Policy (CSP) Header Not Set</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>10020</p></td>
+<td><p>Missing Anti-clickjacking Header</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>10009</p></td>
+<td><p>Vulnerable JS Library (Bootstrap)</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="alertas-low-amostra">
+<h4>Alertas LOW (amostra)<a class="headerlink" href="#alertas-low-amostra" title="Link para este cabeçalho">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Alerta</p></th>
+<th class="head"><p>Ocorrências</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10054</p></td>
+<td><p>Cookie without SameSite Attribute</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>90004</p></td>
+<td><p>Cross-Origin-Embedder-Policy Missing</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>10036</p></td>
+<td><p>Server Leaks Version via “Server” Header</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>10021</p></td>
+<td><p>X-Content-Type-Options Header Missing</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nenhum alerta HIGH foi encontrado. Os alertas MEDIUM e LOW são comportamentos esperados em ambiente HTTP de desenvolvimento e em aplicação Flask sem hardening de headers.</p>
+<p><strong>Lições aprendidas:</strong> O ZAP baseline scan é eficaz para detectar configurações incorretas de segurança (headers ausentes, informações vazadas). Em produção, seria necessário adicionar HTTPS e headers de segurança (CSP, HSTS, X-Frame-Options).</p>
+</section>
+</section>
+</section>
+<section id="etapa-6-entrega-continua-cd">
+<h2>Etapa 6: Entrega Contínua (CD)<a class="headerlink" href="#etapa-6-entrega-continua-cd" title="Link para este cabeçalho">#</a></h2>
+<p><strong>Ferramenta:</strong> GitHub Actions + GitFlow.</p>
+<section id="gitflow">
+<h3>GitFlow<a class="headerlink" href="#gitflow" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Branch</p></th>
+<th class="head"><p>Uso</p></th>
+<th class="head"><p>Gatilho</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">feature/*</span></code></p></td>
+<td><p>Desenvolvimento</p></td>
+<td><p>PR → <code class="docutils literal notranslate"><span class="pre">develop</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">develop</span></code></p></td>
+<td><p>Integração</p></td>
+<td><p>Push (CI) / PR (CI + review)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">staging</span></code></p></td>
+<td><p>Pré-produção</p></td>
+<td><p>Push (CI + deploy + DAST)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+<td><p>Produção</p></td>
+<td><p>Push (CI)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="jobs-de-cd">
+<h3>Jobs de CD<a class="headerlink" href="#jobs-de-cd" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Job</p></th>
+<th class="head"><p>Gatilho</p></th>
+<th class="head"><p>Depende</p></th>
+<th class="head"><p>Ação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">deploy-review</span></code></p></td>
+<td><p>PR → develop</p></td>
+<td><p>dast</p></td>
+<td><p>Smoke test + comenta no PR</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">deploy-staging</span></code></p></td>
+<td><p>Push staging</p></td>
+<td><p>dast</p></td>
+<td><p>Deploy + smoke + aprovação manual</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dast-staging</span></code></p></td>
+<td><p>Push staging</p></td>
+<td><p>deploy-staging</p></td>
+<td><p>ZAP scan no staging</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Aprovação manual:</strong> Environment <code class="docutils literal notranslate"><span class="pre">staging</span></code> configurado no GitHub com <code class="docutils literal notranslate"><span class="pre">required</span> <span class="pre">reviewers</span></code>, garantindo que ninguém faça deploy sem revisão.</p>
+</section>
+<section id="smoke-test">
+<h3>Smoke Test<a class="headerlink" href="#smoke-test" title="Link para este cabeçalho">#</a></h3>
+<p>Script Python com <code class="docutils literal notranslate"><span class="pre">urllib</span></code> (sem dependências externas) que percorre: GET /login → POST /register → POST /login → POST /add_task → GET /all_tasks → GET /logout.</p>
+<p><strong>Lições aprendidas:</strong> A extração de CSRF token do formulário HTML foi necessária porque o Flask-WTF protege todos os formulários por padrão. O smoke test demonstrou que o CD precisa de validação funcional, não apenas de build.</p>
+</section>
+</section>
+<section id="etapa-7-monitoramento-promtail-loki-grafana">
+<h2>Etapa 7: Monitoramento (Promtail + Loki + Grafana)<a class="headerlink" href="#etapa-7-monitoramento-promtail-loki-grafana" title="Link para este cabeçalho">#</a></h2>
+<p><strong>Ferramentas:</strong> Promtail 3.4.2, Loki 3.4.2, Grafana 11.4.0.</p>
+<section id="arquitetura">
+<h3>Arquitetura<a class="headerlink" href="#arquitetura" title="Link para este cabeçalho">#</a></h3>
+<pre  class="mermaid">
+        flowchart LR
+  A[Flask App&lt;br/&gt;FileHandler] --&gt; B[logs/app.log]
+  B --&gt; C[Promtail]
+  C --&gt; D[Loki]
+  D --&gt; E[Grafana]
+    </pre></section>
+<section id="servicos-no-docker-compose">
+<h3>Serviços no Docker Compose<a class="headerlink" href="#servicos-no-docker-compose" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Serviço</p></th>
+<th class="head"><p>Imagem</p></th>
+<th class="head"><p>Porta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>loki</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">grafana/loki:3.4.2</span></code></p></td>
+<td><p>3100</p></td>
+</tr>
+<tr class="row-odd"><td><p>promtail</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">grafana/promtail:3.4.2</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p>grafana</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">grafana/grafana:11.4.0</span></code></p></td>
+<td><p>3000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>O Flask escreve logs simultaneamente para syslog (<strong>/dev/log</strong>) e para arquivo (<code class="docutils literal notranslate"><span class="pre">logs/app.log</span></code> via <code class="docutils literal notranslate"><span class="pre">FileHandler</span></code>). O Promtail faz tail deste arquivo e envia ao Loki.</p>
+</section>
+<section id="dashboard-7-paineis">
+<h3>Dashboard — 7 Painéis<a class="headerlink" href="#dashboard-7-paineis" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Painel</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Finalidade</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Timeline de Logs</p></td>
+<td><p>Logs</p></td>
+<td><p>Visualização bruta</p></td>
+</tr>
+<tr class="row-odd"><td><p>LOGIN_FAILURE/min</p></td>
+<td><p>Time series</p></td>
+<td><p>Taxa de falhas</p></td>
+</tr>
+<tr class="row-even"><td><p>LOGIN_SUCCESS/min</p></td>
+<td><p>Time series</p></td>
+<td><p>Taxa de sucessos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tasks Criadas (24h)</p></td>
+<td><p>Stat</p></td>
+<td><p>Volume de operações</p></td>
+</tr>
+<tr class="row-even"><td><p>Acessos Não Autorizados</p></td>
+<td><p>Stat</p></td>
+<td><p>Violações</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eventos por Severidade</p></td>
+<td><p>Pie chart</p></td>
+<td><p>Distribuição</p></td>
+</tr>
+<tr class="row-even"><td><p>Falhas de Login (threshold 5)</p></td>
+<td><p>Time series</p></td>
+<td><p>Alerta brute-force</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="alerta-de-brute-force">
+<h3>Alerta de Brute-force<a class="headerlink" href="#alerta-de-brute-force" title="Link para este cabeçalho">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>count_over_time({job=&quot;flask-app&quot;} |= &quot;LOGIN_FAILURE&quot; [1m]) &gt; 5
+</pre></div>
+</div>
+<p>Gatilho: mais de 5 falhas de login no último minuto. Provisionado automaticamente via <code class="docutils literal notranslate"><span class="pre">config/grafana/alerting/rules.yml</span></code>.</p>
+<p><strong>Lições aprendidas:</strong> A stack Promtail+Loki+Grafana consumiu ~2 GB RAM total, muito mais leve que ELK Stack. A coleta de logs via FileHandler (arquivo) foi mais simples de configurar que syslog remoto. O LogQL para alertas de brute-force mostrou-se eficaz e de fácil manutenção.</p>
+</section>
+</section>
+<section id="pipeline-ci-cd-final">
+<h2>Pipeline CI/CD Final<a class="headerlink" href="#pipeline-ci-cd-final" title="Link para este cabeçalho">#</a></h2>
+<p>Arquivo <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> — 8 jobs: build, test, sast, dast, deploy-review, deploy-staging, dast-staging, monitoring.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI/CD</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">develop</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">staging</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">master</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">develop</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span>
+<span class="nt">concurrency</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.workflow }}-${{ github.ref }}</span>
+<span class="w">  </span><span class="nt">cancel-in-progress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">PYTHON_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/pip</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;requirements.txt&#39;) }}</span>
+<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install --no-cache-dir -r requirements.txt</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd todo_project &amp;&amp; python -c &quot;from todo_project import app; print(&#39;OK&#39;)&quot;</span>
+
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/pip</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;requirements.txt&#39;) }}</span>
+<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install --no-cache-dir -r requirements.txt</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd todo_project &amp;&amp; python -m pytest tests/ -v --junitxml=../report.xml</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">test-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">report.xml</span><span class="p p-Indicator">}</span>
+
+<span class="w">  </span><span class="nt">sast</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.cache/pip</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-${{ hashFiles(&#39;requirements.txt&#39;) }}</span>
+<span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ runner.os }}-pip-</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -r requirements.txt &amp;&amp; pip install bandit pip-audit</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd todo_project &amp;&amp; bandit -r . -f json -o ../bandit-report.json --exit-zero</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">python -c &quot;</span>
+<span class="w">          </span><span class="no">import json</span>
+<span class="w">          </span><span class="no">with open(&#39;bandit-report.json&#39;) as f:</span>
+<span class="w">              </span><span class="no">data = json.load(f)</span>
+<span class="w">          </span><span class="no">high = [r for r in data.get(&#39;results&#39;, []) if r[&#39;issue_severity&#39;] == &#39;HIGH&#39;]</span>
+<span class="w">          </span><span class="no">if high: exit(1)</span>
+<span class="w">          </span><span class="no">&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip-audit -r requirements.txt -f json --desc | tee pip-audit-report.json</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">bandit-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">bandit-report.json</span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">pip-audit-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">pip-audit-report.json</span><span class="p p-Indicator">}</span>
+
+<span class="w">  </span><span class="nt">dast</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sast</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker compose up -d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">for i in $(seq 15); do</span>
+<span class="w">            </span><span class="no">curl -s -o /dev/null http://localhost:5000/login &amp;&amp; exit 0</span>
+<span class="w">            </span><span class="no">sleep 2</span>
+<span class="w">          </span><span class="no">done; echo &quot;App failed&quot;; exit 1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">mkdir -p zap_report</span>
+<span class="w">          </span><span class="no">NETWORK=$$(docker inspect &quot;$$(docker compose ps -q app)&quot;</span>
+<span class="w">            </span><span class="no">--format &#39;{{range .NetworkSettings.Networks}}{{.}}{{end}}&#39;)</span>
+<span class="w">          </span><span class="no">docker run --rm --network &quot;$$NETWORK&quot; \</span>
+<span class="w">            </span><span class="no">-v &quot;$$PWD/.zap/rules.tsv&quot;:/zap/rules.tsv:ro \</span>
+<span class="w">            </span><span class="no">-v &quot;$$PWD/zap_report&quot;:/zap/wrk --workdir /zap/wrk \</span>
+<span class="w">            </span><span class="no">ghcr.io/zaproxy/zaproxy:stable /zap/zap-baseline.py \</span>
+<span class="w">            </span><span class="no">-t http://app:5000 -c /zap/rules.tsv \</span>
+<span class="w">            </span><span class="no">-J zap_report.json -r zap_report.html -I</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">zap-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">zap_report/</span><span class="p p-Indicator">}</span>
+
+<span class="w">  </span><span class="nt">deploy-review</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;pull_request&#39; &amp;&amp; github.base_ref == &#39;develop&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dast</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">review</span><span class="p p-Indicator">,</span><span class="nt"> url</span><span class="p">:</span><span class="w"> </span><span class="nv">http</span><span class="p p-Indicator">:</span><span class="nv">//localhost</span><span class="p p-Indicator">:</span><span class="nv">5000</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker compose up -d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">for i in $(seq 15); do</span>
+<span class="w">            </span><span class="no">curl -s -o /dev/null http://localhost:5000/login &amp;&amp; exit 0</span>
+<span class="w">            </span><span class="no">sleep 2</span>
+<span class="w">          </span><span class="no">done; echo &quot;Failed&quot;; exit 1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python scripts/smoke_test.py http://localhost:5000</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/github-script@v7</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">github.rest.issues.createComment({</span>
+<span class="w">              </span><span class="no">issue_number: context.issue.number,</span>
+<span class="w">              </span><span class="no">owner: context.repo.owner, repo: context.repo.repo,</span>
+<span class="w">              </span><span class="no">body: &#39;## Review Environment Ready - localhost:5000&#39;</span>
+<span class="w">            </span><span class="no">})</span>
+
+<span class="w">  </span><span class="nt">deploy-staging</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/staging&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dast</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">staging</span><span class="p p-Indicator">,</span><span class="nt"> url</span><span class="p">:</span><span class="w"> </span><span class="nv">http</span><span class="p p-Indicator">:</span><span class="nv">//localhost</span><span class="p p-Indicator">:</span><span class="nv">5000</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker compose -p staging up -d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">for i in $(seq 15); do</span>
+<span class="w">            </span><span class="no">curl -s -o /dev/null http://localhost:5000/login &amp;&amp; exit 0</span>
+<span class="w">            </span><span class="no">sleep 2</span>
+<span class="w">          </span><span class="no">done; echo &quot;Failed&quot;; exit 1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python scripts/smoke_test.py http://localhost:5000</span>
+
+<span class="w">  </span><span class="nt">dast-staging</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/staging&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-staging</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker compose -p staging up -d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">for i in $(seq 15); do</span>
+<span class="w">            </span><span class="no">curl -s -o /dev/null http://localhost:5000/login &amp;&amp; exit 0</span>
+<span class="w">            </span><span class="no">sleep 2</span>
+<span class="w">          </span><span class="no">done; echo &quot;Failed&quot;; exit 1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">mkdir -p zap_staging_report</span>
+<span class="w">          </span><span class="no">NETWORK=$$(docker inspect &quot;$$(docker compose -p staging ps -q app)&quot;</span>
+<span class="w">            </span><span class="no">--format &#39;{{range .NetworkSettings.Networks}}{{.}}{{end}}&#39;)</span>
+<span class="w">          </span><span class="no">docker run --rm --network &quot;$$NETWORK&quot; \</span>
+<span class="w">            </span><span class="no">-v &quot;$$PWD/.zap/rules.tsv&quot;:/zap/rules.tsv:ro \</span>
+<span class="w">            </span><span class="no">-v &quot;$$PWD/zap_staging_report&quot;:/zap/wrk --workdir /zap/wrk \</span>
+<span class="w">            </span><span class="no">ghcr.io/zaproxy/zaproxy:stable /zap/zap-baseline.py \</span>
+<span class="w">            </span><span class="no">-t http://app:5000 -c /zap/rules.tsv \</span>
+<span class="w">            </span><span class="no">-J zap_report.json -r zap_report.html -I</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">zap-staging-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">zap_staging_report/</span><span class="p p-Indicator">}</span>
+
+<span class="w">  </span><span class="nt">monitoring</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/staging&#39;</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">timeout-minutes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dast-staging</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker compose -p staging up -d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">for i in $(seq 30); do</span>
+<span class="w">            </span><span class="no">APP=$$(curl -s -o /dev/null -w &#39;%{http_code}&#39; http://localhost:5000/login)</span>
+<span class="w">            </span><span class="no">GRA=$$(curl -s -o /dev/null -w &#39;%{http_code}&#39; http://localhost:3000/api/health)</span>
+<span class="w">            </span><span class="no">[ &quot;$$APP&quot; = 200 ] &amp;&amp; [ &quot;$$GRA&quot; = 200 ] &amp;&amp; exit 0</span>
+<span class="w">            </span><span class="no">sleep 5</span>
+<span class="w">          </span><span class="no">done; echo &quot;Failed&quot;; exit 1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python scripts/generate_traffic.py http://localhost:5000</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">curl -s &quot;http://localhost:3100/loki/api/v1/query_range&quot; \</span>
+<span class="w">            </span><span class="no">--data-urlencode &#39;query={job=&quot;flask-app&quot;}&#39; | jq &#39;.data.result | length&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">R=$$(curl -s &quot;http://localhost:3100/loki/api/v1/query_range&quot; \</span>
+<span class="w">            </span><span class="no">--data-urlencode &#39;query={job=&quot;flask-app&quot;} |= &quot;LOGIN_FAILURE&quot;&#39;)</span>
+<span class="w">          </span><span class="no">[ &quot;$$(echo $$R | jq &#39;.data.result[0].values | length // 0&#39;)&quot; -ge 5 ]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl -s &quot;http://admin:admin@localhost:3000/api/dashboards/uid/app-logs&quot; -o md.json</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always()</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v4</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">monitoring-report</span><span class="p p-Indicator">,</span><span class="nt"> path</span><span class="p">:</span><span class="w"> </span><span class="nv">monitoring-dashboard.json</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</section>
+<section id="consideracoes-finais">
+<h2>Considerações Finais<a class="headerlink" href="#consideracoes-finais" title="Link para este cabeçalho">#</a></h2>
+<section id="riscos-aceitos">
+<h3>Riscos Aceitos<a class="headerlink" href="#riscos-aceitos" title="Link para este cabeçalho">#</a></h3>
+<p>16 vulnerabilidades de dependências foram <strong>aceitas como risco</strong> devido à incompatibilidade do Flask 1.1.4 com versões corrigidas dos pacotes. A atualização quebraria a aplicação. Recomenda-se um refactor para Flask 2.x+ em versão futura.</p>
+</section>
+<section id="pendencias-tecnicas">
+<h3>Pendências Técnicas<a class="headerlink" href="#pendencias-tecnicas" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Impacto</p></th>
+<th class="head"><p>Ação Recomendada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SECRET_KEY hardcoded</p></td>
+<td><p>Baixo (ambiente dev)</p></td>
+<td><p>Migrar para variável de ambiente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rate limiting (RNF-03)</p></td>
+<td><p>Médio</p></td>
+<td><p>Implementar bloqueio temporário após N tentativas de login</p></td>
+</tr>
+<tr class="row-even"><td><p>Debug mode ativado</p></td>
+<td><p>Médio</p></td>
+<td><p>Desabilitar em staging/produção</p></td>
+</tr>
+<tr class="row-odd"><td><p>HTTPS</p></td>
+<td><p>Alto</p></td>
+<td><p>Configurar certificado para staging/produção</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ferramentas-utilizadas-visao-geral">
+<h3>Ferramentas Utilizadas (visão geral)<a class="headerlink" href="#ferramentas-utilizadas-visao-geral" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Categoria</p></th>
+<th class="head"><p>Ferramentas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Containerização</p></td>
+<td><p>Docker, Docker Compose</p></td>
+</tr>
+<tr class="row-odd"><td><p>Testes</p></td>
+<td><p>pytest</p></td>
+</tr>
+<tr class="row-even"><td><p>SAST</p></td>
+<td><p>Bandit, pip-audit</p></td>
+</tr>
+<tr class="row-odd"><td><p>DAST</p></td>
+<td><p>OWASP ZAP</p></td>
+</tr>
+<tr class="row-even"><td><p>CI/CD</p></td>
+<td><p>GitHub Actions</p></td>
+</tr>
+<tr class="row-odd"><td><p>Monitoramento</p></td>
+<td><p>Promtail, Loki, Grafana</p></td>
+</tr>
+<tr class="row-even"><td><p>Controle de versão</p></td>
+<td><p>Git, GitFlow</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CASO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Estudo de Caso</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="etapa-1/01-analise.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Análise de Requisitos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-1-planejamento-e-requisitos">Etapa 1: Planejamento e Requisitos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-requisitos">Análise de Requisitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-uso">Casos de Uso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriz-de-ameacas">Matriz de Ameaças</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-2-containerizacao-e-modificacoes-de-seguranca">Etapa 2: Containerização e Modificações de Segurança</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#containerizacao">Containerização</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificacoes-de-seguranca">Modificações de Segurança</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacao-global-via-before-request">Autenticação global via before_request</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#syslog">Syslog</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verificacao-de-dono-da-tarefa">Verificação de dono da tarefa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados">Resultados</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-3-testes-e-pipeline-ci">Etapa 3: Testes e Pipeline CI</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-automatizados">Testes Automatizados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ci">Pipeline CI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-4-analise-estatica-de-seguranca-sast">Etapa 4: Análise Estática de Segurança (SAST)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bandit">Bandit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pip-audit">pip-audit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-5-analise-dinamica-de-seguranca-dast">Etapa 5: Análise Dinâmica de Segurança (DAST)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alertas-medium">Alertas MEDIUM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alertas-low-amostra">Alertas LOW (amostra)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-6-entrega-continua-cd">Etapa 6: Entrega Contínua (CD)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gitflow">GitFlow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-de-cd">Jobs de CD</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#smoke-test">Smoke Test</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-7-monitoramento-promtail-loki-grafana">Etapa 7: Monitoramento (Promtail + Loki + Grafana)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitetura">Arquitetura</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#servicos-no-docker-compose">Serviços no Docker Compose</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-7-paineis">Dashboard — 7 Painéis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alerta-de-brute-force">Alerta de Brute-force</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-ci-cd-final">Pipeline CI/CD Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideracoes-finais">Considerações Finais</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riscos-aceitos">Riscos Aceitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pendencias-tecnicas">Pendências Técnicas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ferramentas-utilizadas-visao-geral">Ferramentas Utilizadas (visão geral)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Testes Automatizados &#8212; Documentação Estudo de Caso: DevSecOps </title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/translations.js?v=71a39b36"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'etapa-3/01-testes';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Pipeline CI" href="02-pipeline.html" />
+    <link rel="prev" title="Implementação — Modificações de Segurança (Etapa 2, parte 2)" href="../etapa-2/02-modificacoes-seguranca.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Documentação Estudo de Caso: DevSecOps </p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../CASO.html">Estudo de Caso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../relatorio-final.html">Relatório Final</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 1 — Planejamento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-1/01-analise.html">Análise de Requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etapa-1/02-requisitos.html">Requisitos Funcionais e Não Funcionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etapa-1/03-casos-de-uso.html">Casos de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etapa-1/04-fluxos-de-sistema.html">Fluxos de Sistema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etapa-1/05-ameacas.html">Ameaças de Segurança e Medidas de Mitigação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 2 — Containerização</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-2/01-container-execucao.html">Etapa 2: Containerização e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../etapa-2/02-modificacoes-seguranca.html">Implementação — Modificações de Segurança (Etapa 2, parte 2)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 3 — Testes e Pipeline CI</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Testes Automatizados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-pipeline.html">Pipeline CI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 4 — SAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-4/01-sast.html">Etapa 4: Análise Estática de Segurança (SAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 5 — DAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-5/01-dast.html">Etapa 5: Análise Dinâmica de Segurança (DAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 6 — CD</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-6/01-cd.html">Etapa 6: Entrega Contínua (CD)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 7 — Monitoramento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../etapa-7/01-monitoramento.html">Etapa 7: Monitoramento (Promtail + Loki + Grafana)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/etapa-3/01-testes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Testes Automatizados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ferramentas">Ferramentas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura">Estrutura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-conftest-py">Fixtures (<code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-modelos-test-models-py-8-testes">Testes de modelos (<code class="docutils literal notranslate"><span class="pre">test_models.py</span></code> — 8 testes)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-rotas-test-routes-py-26-testes">Testes de rotas (<code class="docutils literal notranslate"><span class="pre">test_routes.py</span></code> — 26 testes)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacao-7-testes">Autenticação (7 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autorizacao-before-request-5-testes">Autorização — before_request (5 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crud-de-tarefas-4-testes">CRUD de tarefas (4 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolamento-entre-usuarios-2-testes">Isolamento entre usuários (2 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conta-3-testes">Conta (3 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syslog-4-testes">Syslog (4 testes)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-formularios-test-forms-py-9-testes">Testes de formulários (<code class="docutils literal notranslate"><span class="pre">test_forms.py</span></code> — 9 testes)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-executar">Como executar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado">Resultado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="testes-automatizados">
+<h1>Testes Automatizados<a class="headerlink" href="#testes-automatizados" title="Link para este cabeçalho">#</a></h1>
+<section id="ferramentas">
+<h2>Ferramentas<a class="headerlink" href="#ferramentas" title="Link para este cabeçalho">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pacote</p></th>
+<th class="head"><p>Versão</p></th>
+<th class="head"><p>Finalidade</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pytest</span></code></p></td>
+<td><p>8.4.2</p></td>
+<td><p>Runner de testes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="estrutura">
+<h2>Estrutura<a class="headerlink" href="#estrutura" title="Link para este cabeçalho">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>todo_project/tests/
+├──<span class="w"> </span>conftest.py<span class="w">          </span><span class="c1"># Fixtures (client, auth_client, user, user_with_tasks, app_context)</span>
+├──<span class="w"> </span>test_forms.py<span class="w">        </span><span class="c1"># Testes de validação dos formulários (9 testes)</span>
+├──<span class="w"> </span>test_models.py<span class="w">       </span><span class="c1"># Testes dos modelos User e Task (8 testes)</span>
+└──<span class="w"> </span>test_routes.py<span class="w">       </span><span class="c1"># Testes das rotas (26 testes)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Total: 43 testes</p>
+</div></blockquote>
+</section>
+<section id="fixtures-conftest-py">
+<h2>Fixtures (<code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>)<a class="headerlink" href="#fixtures-conftest-py" title="Link para este cabeçalho">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fixture</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">client</span></code></p></td>
+<td><p>App Flask em modo TEST, SQLite <code class="docutils literal notranslate"><span class="pre">:memory:</span></code>, CSRF desabilitado, logger INFO, tabelas criadas/removidas por teste</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">auth_client</span></code></p></td>
+<td><p>Cliente autenticado (registra + loga usuário <code class="docutils literal notranslate"><span class="pre">testuser</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">user</span></code></p></td>
+<td><p>Usuário <code class="docutils literal notranslate"><span class="pre">alice</span></code> com senha hasheada via bcrypt</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">user_with_tasks</span></code></p></td>
+<td><p>Usuário <code class="docutils literal notranslate"><span class="pre">alice</span></code> com 1 task associada</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">app_context</span></code></p></td>
+<td><p>Contexto da aplicação para acesso ao banco</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="testes-de-modelos-test-models-py-8-testes">
+<h2>Testes de modelos (<code class="docutils literal notranslate"><span class="pre">test_models.py</span></code> — 8 testes)<a class="headerlink" href="#testes-de-modelos-test-models-py-8-testes" title="Link para este cabeçalho">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_create_user</span></code></p></td>
+<td><p>Criar usuário e salvar no banco</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_password_hashing</span></code></p></td>
+<td><p>Verificar hash bcrypt (senha correta e incorreta)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_password_with_special_chars</span></code></p></td>
+<td><p>Senha com caracteres especiais</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_create_task</span></code></p></td>
+<td><p>Criar task associada a um usuário</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_user_tasks_relationship</span></code></p></td>
+<td><p>Verificar relacionamento User.tasks</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_task_content_edge_cases</span></code></p></td>
+<td><p>Content vazio e com caracteres especiais</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_task_default_date</span></code></p></td>
+<td><p>Verificar data padrão na criação</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_user_repr</span></code></p></td>
+<td><p>Representação string do User</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_task_repr</span></code></p></td>
+<td><p>Representação string da Task</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="testes-de-rotas-test-routes-py-26-testes">
+<h2>Testes de rotas (<code class="docutils literal notranslate"><span class="pre">test_routes.py</span></code> — 26 testes)<a class="headerlink" href="#testes-de-rotas-test-routes-py-26-testes" title="Link para este cabeçalho">#</a></h2>
+<section id="autenticacao-7-testes">
+<h3>Autenticação (7 testes)<a class="headerlink" href="#autenticacao-7-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_login_page</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/login</span></code> → 200</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_register_page</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/register</span></code> → 200</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_register_user</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/register</span></code> com dados válidos → flash “Account Created”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_login_success</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/login</span></code> com credenciais corretas → flash “Login Successfull”</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_login_failure</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/login</span></code> com credenciais erradas → flash “Login Unsuccessful”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_logout_redirects_to_login</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/logout</span></code> → redirect p/ login</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_register_duplicate_username</span></code></p></td>
+<td><p>Registrar username duplicado → erro</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="autorizacao-before-request-5-testes">
+<h3>Autorização — before_request (5 testes)<a class="headerlink" href="#autorizacao-before-request-5-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_all_tasks_requires_auth</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/all_tasks</span></code> sem auth → redirect p/ login</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_add_task_requires_auth</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/add_task</span></code> sem auth → redirect p/ login</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_account_requires_auth</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/account</span></code> sem auth → redirect p/ login</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_about_requires_auth</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/</span></code> sem auth → redirect p/ login</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_about_page_requires_auth</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/about</span></code> sem auth → redirect p/ login</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="crud-de-tarefas-4-testes">
+<h3>CRUD de tarefas (4 testes)<a class="headerlink" href="#crud-de-tarefas-4-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_add_task</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/add_task</span></code> → flash “Task Created”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_all_tasks_shows_tasks</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/all_tasks</span></code> autenticado → lista as tasks</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_update_task</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/update_task/&lt;id&gt;</span></code> com task_id dinâmico → flash “Task Updated”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_delete_task</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/delete_task/&lt;id&gt;</span></code> com task_id dinâmico → flash “Task Deleted”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="isolamento-entre-usuarios-2-testes">
+<h3>Isolamento entre usuários (2 testes)<a class="headerlink" href="#isolamento-entre-usuarios-2-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_update_other_users_task_returns_403</span></code></p></td>
+<td><p>user2 tenta update task de user1 → 403</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_delete_other_users_task_returns_403</span></code></p></td>
+<td><p>user2 tenta delete task de user1 → 403</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="conta-3-testes">
+<h3>Conta (3 testes)<a class="headerlink" href="#conta-3-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_account_page</span></code></p></td>
+<td><p>GET <code class="docutils literal notranslate"><span class="pre">/account</span></code> autenticado → 200</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_change_password</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/change_password</span></code> senha correta → “Password Changed”</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_change_password_wrong_old</span></code></p></td>
+<td><p>POST <code class="docutils literal notranslate"><span class="pre">/change_password</span></code> senha errada → “Please Enter Correct Password”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="syslog-4-testes">
+<h3>Syslog (4 testes)<a class="headerlink" href="#syslog-4-testes" title="Link para este cabeçalho">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_login_success_logs</span></code></p></td>
+<td><p>caplog contém <code class="docutils literal notranslate"><span class="pre">LOGIN_SUCCESS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_login_failure_logs</span></code></p></td>
+<td><p>caplog contém <code class="docutils literal notranslate"><span class="pre">LOGIN_FAILURE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_register_success_logs</span></code></p></td>
+<td><p>caplog contém <code class="docutils literal notranslate"><span class="pre">REGISTER_SUCCESS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_add_task_logs</span></code></p></td>
+<td><p>caplog contém <code class="docutils literal notranslate"><span class="pre">OPERATION_SUCCESS</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Testes de log usam o fixture <code class="docutils literal notranslate"><span class="pre">caplog</span></code> do pytest para capturar chamadas ao <code class="docutils literal notranslate"><span class="pre">app.logger</span></code> sem depender do syslog real.</p>
+</section>
+</section>
+<section id="testes-de-formularios-test-forms-py-9-testes">
+<h2>Testes de formulários (<code class="docutils literal notranslate"><span class="pre">test_forms.py</span></code> — 9 testes)<a class="headerlink" href="#testes-de-formularios-test-forms-py-9-testes" title="Link para este cabeçalho">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Teste</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_valid_data</span></code></p></td>
+<td><p>RegistrationForm com dados válidos</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_username_too_short</span></code></p></td>
+<td><p>Username &lt; 3 caracteres → erro</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_password_mismatch</span></code></p></td>
+<td><p>Passwords diferentes → erro</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_duplicate_username_validated</span></code></p></td>
+<td><p>Username existente → erro “Username Exists” (usa bcrypt real)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_valid_login_form</span></code></p></td>
+<td><p>LoginForm com dados válidos</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_missing_password</span></code></p></td>
+<td><p>LoginForm sem senha → erro</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_missing_username</span></code></p></td>
+<td><p>LoginForm sem username → erro</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test_valid_task</span></code></p></td>
+<td><p>TaskForm com descrição</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test_empty_task</span></code></p></td>
+<td><p>TaskForm vazio → erro</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="como-executar">
+<h2>Como executar<a class="headerlink" href="#como-executar" title="Link para este cabeçalho">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dentro do container em execução</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-w<span class="w"> </span>/app/todo_project<span class="w"> </span>app<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+
+<span class="c1"># Instalar pytest se necessário</span>
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>app<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pytest
+
+<span class="c1"># Ou via container temporário</span>
+docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>app<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;pip install -q -r /app/requirements.txt pytest &amp;&amp; cd /app/todo_project &amp;&amp; python -m pytest tests/ -v&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="resultado">
+<h2>Resultado<a class="headerlink" href="#resultado" title="Link para este cabeçalho">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">43</span><span class="w"> </span>passed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>warnings<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">15</span>.94s
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../etapa-2/02-modificacoes-seguranca.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Implementação — Modificações de Segurança (Etapa 2, parte 2)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02-pipeline.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Pipeline CI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ferramentas">Ferramentas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura">Estrutura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-conftest-py">Fixtures (<code class="docutils literal notranslate"><span class="pre">conftest.py</span></code>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-modelos-test-models-py-8-testes">Testes de modelos (<code class="docutils literal notranslate"><span class="pre">test_models.py</span></code> — 8 testes)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-rotas-test-routes-py-26-testes">Testes de rotas (<code class="docutils literal notranslate"><span class="pre">test_routes.py</span></code> — 26 testes)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autenticacao-7-testes">Autenticação (7 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autorizacao-before-request-5-testes">Autorização — before_request (5 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crud-de-tarefas-4-testes">CRUD de tarefas (4 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isolamento-entre-usuarios-2-testes">Isolamento entre usuários (2 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conta-3-testes">Conta (3 testes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syslog-4-testes">Syslog (4 testes)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testes-de-formularios-test-forms-py-9-testes">Testes de formulários (<code class="docutils literal notranslate"><span class="pre">test_forms.py</span></code> — 9 testes)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-executar">Como executar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultado">Resultado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

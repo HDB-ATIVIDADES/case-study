@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+
+
+<html lang="pt-BR" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estudo de Caso &#8212; Documentação Estudo de Caso: DevSecOps </title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=2efa9f5e"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/translations.js?v=71a39b36"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'CASO';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Estudo de Caso: DevSecOps" href="relatorio-final.html" />
+    <link rel="prev" title="Estudo de Caso: DevSecOps" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="pt-BR"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Documentação Estudo de Caso: DevSecOps </p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Buscar</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Documentos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Estudo de Caso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relatorio-final.html">Relatório Final</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 1 — Planejamento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/01-analise.html">Análise de Requisitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/02-requisitos.html">Requisitos Funcionais e Não Funcionais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/03-casos-de-uso.html">Casos de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/04-fluxos-de-sistema.html">Fluxos de Sistema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-1/05-ameacas.html">Ameaças de Segurança e Medidas de Mitigação</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 2 — Containerização</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-2/01-container-execucao.html">Etapa 2: Containerização e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-2/02-modificacoes-seguranca.html">Implementação — Modificações de Segurança (Etapa 2, parte 2)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 3 — Testes e Pipeline CI</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-3/01-testes.html">Testes Automatizados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etapa-3/02-pipeline.html">Pipeline CI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 4 — SAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-4/01-sast.html">Etapa 4: Análise Estática de Segurança (SAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 5 — DAST</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-5/01-dast.html">Etapa 5: Análise Dinâmica de Segurança (DAST)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 6 — CD</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-6/01-cd.html">Etapa 6: Entrega Contínua (CD)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Etapa 7 — Monitoramento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="etapa-7/01-monitoramento.html">Etapa 7: Monitoramento (Promtail + Loki + Grafana)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Baixe esta página">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/CASO.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Baixar arquivo fonte"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir em PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo tela cheia"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Buscar" aria-label="Buscar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estudo de Caso</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Conteúdo </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-1-planejamento-e-definicao-de-requisitos">Etapa 1: Planejamento e Definição de Requisitos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-requisitos">Análise de Requisitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-funcionais-e-nao-funcionais">Requisitos Funcionais e Não Funcionais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-uso-e-fluxos-de-sistema">Casos de Uso e Fluxos de Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ameacas-de-seguranca-e-medidas-de-mitigacao">Ameaças de Segurança e Medidas de Mitigação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-2-desenvolvimento-do-sistema">Etapa 2: Desenvolvimento do Sistema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-3-criacao-de-um-pipeline-ci-cd">Etapa 3: Criação de um pipeline CI/CD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-4-analise-estatica-de-codigo-sast">Etapa 4: Análise Estática de Código (SAST)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-5-analise-dinamica-de-seguranca-dast">Etapa 5: Análise Dinâmica de Segurança (DAST)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-6-entrega-continua-cd">Etapa 6: Entrega Contínua (CD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-7-feedback-e-monitoramento">Etapa 7: Feedback e Monitoramento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-8-documentacao-e-entrega-final">Etapa 8: Documentação e Entrega Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa-a-entregar">Tarefa a Entregar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="estudo-de-caso">
+<h1>Estudo de Caso<a class="headerlink" href="#estudo-de-caso" title="Link para este cabeçalho">#</a></h1>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Link para este cabeçalho">#</a></h2>
+<p>Neste estudo de caso, assumiremos o papel de um desenvolvedor individual encarregado de criar, implementar e assegurar a segurança de um sistema simples de gerenciamento de tarefas pessoais, aplicando conceitos de Introdução ao SDLC, Modelos e Metodologias SDLC, Introdução ao DevOps, Desenvolvimento Seguro de Software, Containers e Docker, e DevSecOps.</p>
+</section>
+<section id="etapa-1-planejamento-e-definicao-de-requisitos">
+<h2>Etapa 1: Planejamento e Definição de Requisitos<a class="headerlink" href="#etapa-1-planejamento-e-definicao-de-requisitos" title="Link para este cabeçalho">#</a></h2>
+<p>Iniciar um projeto de desenvolvimento de software sem um entendimento claro dos requisitos é como iniciar uma viagem sem um destino em mente. Portanto, sua primeira tarefa é analisar e entender os requisitos do sistema de gerenciamento de tarefas pessoais.</p>
+<section id="analise-de-requisitos">
+<h3>Análise de Requisitos<a class="headerlink" href="#analise-de-requisitos" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p>Comece fazendo uma lista dos requisitos que você acredita serem necessários para o sistema de gerenciamento de tarefas pessoais. Por exemplo, o sistema deve ser capaz de autenticar os usuários, permitir que os usuários criem, editem, excluam e visualizem suas tarefas, permitir que os usuários pesquisem tarefas por palavras-chave,etc.</p></li>
+<li><p>Requisitos obrigatórios:</p>
+<ul>
+<li><p>autenticação é obrigatória antes de qualquer ação</p></li>
+<li><p>aplicação deve gerar log de suas atividades via syslog, bem como sucesso ou fracasso nas autenticações</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="requisitos-funcionais-e-nao-funcionais">
+<h3>Requisitos Funcionais e Não Funcionais<a class="headerlink" href="#requisitos-funcionais-e-nao-funcionais" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p>Depois de identificar os requisitos, divida-os em requisitos funcionais e não funcionais.</p></li>
+<li><p>Requisitos funcionais são características que o sistema deve ter para cumprir sua função (por exemplo, processar pedidos).</p></li>
+<li><p>Requisitos não funcionais são características relacionadas ao desempenho do sistema, como velocidade, segurança e usabilidade.</p></li>
+</ul>
+</section>
+<section id="casos-de-uso-e-fluxos-de-sistema">
+<h3>Casos de Uso e Fluxos de Sistema<a class="headerlink" href="#casos-de-uso-e-fluxos-de-sistema" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p>Em seguida, crie casos de uso para descrever como os usuários interagem com o sistema. Por exemplo, um caso de uso pode ser “Usuário faz um pedido”.</p></li>
+<li><p>Além disso, desenhe fluxos de sistema para mostrar como as diferentes partes do sistema interagem entre si.</p></li>
+</ul>
+</section>
+<section id="ameacas-de-seguranca-e-medidas-de-mitigacao">
+<h3>Ameaças de Segurança e Medidas de Mitigação<a class="headerlink" href="#ameacas-de-seguranca-e-medidas-de-mitigacao" title="Link para este cabeçalho">#</a></h3>
+<ul class="simple">
+<li><p>Por último, mas não menos importante, pense nas possíveis ameaças de segurança que o sistema pode enfrentar e como mitigá-las. Por exemplo:</p>
+<ul>
+<li><p>como você protegerá os dados dos usuários?</p></li>
+<li><p>Como evitará ataques de negação de serviço?</p></li>
+<li><p>O que será gerado nos logs como violação de segurança?</p></li>
+</ul>
+</li>
+<li><p>Esta etapa é crucial para garantir que o sistema seja seguro e confiável.</p></li>
+</ul>
+</section>
+</section>
+<section id="etapa-2-desenvolvimento-do-sistema">
+<h2>Etapa 2: Desenvolvimento do Sistema<a class="headerlink" href="#etapa-2-desenvolvimento-do-sistema" title="Link para este cabeçalho">#</a></h2>
+<p>Nesta etapa, você deve analisar o código-fonte base fornecido para o sistema e adaptá-lo ou modificá-lo de modo que possa ser executado em um container Docker. Em um exercício real também seria necessário adaptar o código aos requisitos identificados na etapa 1 porém, adaptaremos apenas o ambiente de execução em container, sem necessariamente implementar todos os requisitos definidos na Etapa 1. Confira as versões e atualizações das ferramentas compatíveis com aplicação.</p>
+<ul class="simple">
+<li><p>Certifique-se de que o Python e Flask estão instalados no seu ambiente de desenvolvimento.</p></li>
+<li><p>Em seguida, baixe e execute a aplicação base de gerenciamento de tarefas pessoais, usando python e flask. É opcional se quiser adaptar conforme os requisitos especificados na etapa 1.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/AdityaBagad/Task-Manager-using-Flask.git
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>run.py
+</pre></div>
+</div>
+</section>
+<section id="etapa-3-criacao-de-um-pipeline-ci-cd">
+<h2>Etapa 3: Criação de um pipeline CI/CD<a class="headerlink" href="#etapa-3-criacao-de-um-pipeline-ci-cd" title="Link para este cabeçalho">#</a></h2>
+<p>Após criada e testada inicialmente a aplicação, voce deve iniciar a criação um pipeline CI/CD usando o GitLab, como visto nas atividades práticas.</p>
+<blockquote>
+<div><p>Obs: Caso sua máquina tenha 8Gb ou menos de memória, utilize o GitHub Action ao invés do Gitlab</p>
+</div></blockquote>
+<p>O pipeline CI/CD deve contemplar inicialmente:</p>
+<ul class="simple">
+<li><p>Controle de versão com Git: Todo o código-fonte deve estar armazenado em um repositório Gitlab, usando tags para marcar versões específicas do código, com ramificações dedicadas para produção, estágio e desenvolvimento.</p></li>
+<li><p>Integração Contínua (CI):</p>
+<ul>
+<li><p>Compilação/interpretação: O código deve ser automaticamente compilado/interpretado a cada commit para assegurar a consistência do ambiente, ou seja, fazer a validação do build, verificar dependências e execução correta do ambiente a cada commit.</p></li>
+<li><p>Testes Automatizados: Realizar os Testes unitários, de integração e funcionais são executados.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="etapa-4-analise-estatica-de-codigo-sast">
+<h2>Etapa 4: Análise Estática de Código (SAST)<a class="headerlink" href="#etapa-4-analise-estatica-de-codigo-sast" title="Link para este cabeçalho">#</a></h2>
+<p>A análise estática de segurança (SAST, na sigla em inglês) é fundamentais para garantir a segurança da aplicação. A SAST envolve a análise estática e de dependencia do código fonte da aplicação em busca de vulnerabilidades.</p>
+<p>Para a análise estática, utilize uma ferramenta chamada Bandit, que é uma ferramenta de análise de segurança Python.</p>
+<p>Para uma análise de dependencias em Python, pode-se usar o OWASP Dependency-Check ou ferramentas específicas como Safety/pip-audit, para identificar bibliotecas desatualizadas ou com falhas de segurança.</p>
+<p>Inclua no pipeline CI/CD essa etapa de SAST:</p>
+<ul class="simple">
+<li><p>Análise Estática de Código</p>
+<ul>
+<li><p>uso do Bandit para analisar o código em busca de vulnerabilidades.</p></li>
+</ul>
+</li>
+<li><p>Análise de Dependência</p>
+<ul>
+<li><p>uso do Owasp Dependency-check</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="etapa-5-analise-dinamica-de-seguranca-dast">
+<h2>Etapa 5: Análise Dinâmica de Segurança (DAST)<a class="headerlink" href="#etapa-5-analise-dinamica-de-seguranca-dast" title="Link para este cabeçalho">#</a></h2>
+<p>Para a análise dinâmica, utilize o OAWSP ZAP na aplicação, que deve estar em execução em um container Docker.</p>
+<ul class="simple">
+<li><p>Certifique-se de que a aplicação esteja em execução.</p></li>
+<li><p>Inicie o Zed Attack Proxy (ZAP), uma ferramenta gratuita de testes de penetração que busca vulnerabilidades em aplicações web, a partir de uma imagem docker.</p></li>
+<li><p>Configure o ZAP para usar o quick start, apontando para o endereço da aplicação (por exemplo, http://192.168.98.10:8080). O modo Quick Start do ZAP realiza varredura automatizada. Caso deseje integrar ao pipeline, utilize o ZAP CLI ou o ZAP Baseline Scan em modo headless.</p></li>
+<li><p>Inicie a verificação de segurança.</p></li>
+<li><p>Após a verificação, o ZAP fornecerá um relatório detalhado de possíveis problemas de segurança.</p></li>
+</ul>
+<p>Após essa etapa, você deve ter uma boa compreensão de como está a qualidade do código e a segurança da sua aplicação.</p>
+<p>Lembre-se de corrigir os problemas encontrados e repetir os testes até que todos passem e a aplicação esteja segura.</p>
+</section>
+<section id="etapa-6-entrega-continua-cd">
+<h2>Etapa 6: Entrega Contínua (CD)<a class="headerlink" href="#etapa-6-entrega-continua-cd" title="Link para este cabeçalho">#</a></h2>
+<p>Acrescente no pipeline CI/CD, a fase de Entrega Contínua (CD):</p>
+<ul class="simple">
+<li><p>Review - reexecução no ambiente de stage:</p>
+<ul>
+<li><p>Para cada merge request, um ambiente temporário de revisão é criado automaticamente para avaliação manual.</p></li>
+</ul>
+</li>
+<li><p>Deploy em Estágio:</p>
+<ul>
+<li><p>Para posterior aprovação, o código é implantado no ambiente de stage para simular a produção</p></li>
+</ul>
+</li>
+<li><p>Testes de Segurança de Aplicação Dinâmicos (DAST), ou seja, repetir os testes DAST no ambiente de stage para validar segurança pós-deploy.</p></li>
+<li><p>O OWASP ZAP é usado para realizar testes de segurança no ambiente de stage.</p></li>
+</ul>
+</section>
+<section id="etapa-7-feedback-e-monitoramento">
+<h2>Etapa 7: Feedback e Monitoramento<a class="headerlink" href="#etapa-7-feedback-e-monitoramento" title="Link para este cabeçalho">#</a></h2>
+<p>Pesquise por ferramentas de monitoramento que possam analisar o log da aplicação e fornecer alertas imediatos de qualquer anomalia (por exemplo, tentativa de quebra de senha por força bruta). Pode revisar ferramentas já utilizadas anteriormente ou analisar novas opções.</p>
+<p>Inclua no pipeline esse monitoramento Pós-Implantação:</p>
+<ul class="simple">
+<li><p>Instalação de ferramentas que monitoram a aplicação em produção para detectar problemas. Ex.: Prometheus + Grafana, Wazuh ou ELK Stack para análise de logs e alertas de anomalia.</p></li>
+</ul>
+</section>
+<section id="etapa-8-documentacao-e-entrega-final">
+<h2>Etapa 8: Documentação e Entrega Final<a class="headerlink" href="#etapa-8-documentacao-e-entrega-final" title="Link para este cabeçalho">#</a></h2>
+<p>Por fim, documente o processo de desenvolvimento, implementação e segurança do sistema. Elabore um relatório final seguindo o padrão adotado nas atividades anteriores, com sumário, cabeçalho e prints das telas.</p>
+<p>O relatório deve ter, no máximo, 12 páginas, apresentando de forma resumida a elaboração do projeto descrito na Etapa 1. Além disso, a partir da Etapa 2, um print do resultado mais relevante de cada etapa. Após o sumário de cada etapa, uma breve descrição das ferramentas utilizadas, os resultados alcançados e as lições aprendidas.</p>
+<p>Inclua também no relatório a versão final do pipeline CI/CD, com o conteúdo do arquivo .gitlab-ci.yml copiado em formato textual dentro do PDF, a fim de documentar o pipeline e demonstrar o uso prático do CI/CD. Não enviar o arquivo .yml separado, pois sua inclusão textual no relatório já serve como evidência técnica da configuração realizada.</p>
+</section>
+<section id="tarefa-a-entregar">
+<h2>Tarefa a Entregar<a class="headerlink" href="#tarefa-a-entregar" title="Link para este cabeçalho">#</a></h2>
+<p>Entregue o relatório final, em PDF.</p>
+</section>
+<section id="conclusao">
+<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link para este cabeçalho">#</a></h2>
+<p>Ao longo deste estudo de caso, tivemos a oportunidade de aplicar uma variedade de habilidades e conceitos importantes, desde o planejamento e design de um sistema até sua implementação e monitoramento contínuo. Este processo nos ajudou a entender melhor os desafios do desenvolvimento de software seguro e eficiente e nos preparou melhor para enfrentar esses desafios no futuro.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Estudo de Caso: DevSecOps</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="relatorio-final.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">próximo</p>
+        <p class="prev-next-title">Estudo de Caso: DevSecOps</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Conteúdo
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introducao">Introdução</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-1-planejamento-e-definicao-de-requisitos">Etapa 1: Planejamento e Definição de Requisitos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analise-de-requisitos">Análise de Requisitos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-funcionais-e-nao-funcionais">Requisitos Funcionais e Não Funcionais</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#casos-de-uso-e-fluxos-de-sistema">Casos de Uso e Fluxos de Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ameacas-de-seguranca-e-medidas-de-mitigacao">Ameaças de Segurança e Medidas de Mitigação</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-2-desenvolvimento-do-sistema">Etapa 2: Desenvolvimento do Sistema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-3-criacao-de-um-pipeline-ci-cd">Etapa 3: Criação de um pipeline CI/CD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-4-analise-estatica-de-codigo-sast">Etapa 4: Análise Estática de Código (SAST)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-5-analise-dinamica-de-seguranca-dast">Etapa 5: Análise Dinâmica de Segurança (DAST)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-6-entrega-continua-cd">Etapa 6: Entrega Contínua (CD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-7-feedback-e-monitoramento">Etapa 7: Feedback e Monitoramento</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#etapa-8-documentacao-e-entrega-final">Etapa 8: Documentação e Entrega Final</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tarefa-a-entregar">Tarefa a Entregar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusao">Conclusão</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+De Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
