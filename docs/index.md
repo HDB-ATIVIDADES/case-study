@@ -11,20 +11,20 @@ Aplicação de conceitos DevOps e DevSecOps em um sistema de gerenciamento de ta
 | Documento | Descrição |
 | --- | --- |
 | [Relatório Final (PDF)](relatorio-final.pdf) | Relatório consolidado do estudo de caso |
-| [Enunciado do Caso](CASO.md) | Descrição das etapas do estudo de caso |
-| [Todo / Pendências](../todo.md) | Ações pendentes e próximos passos |
+| [Enunciado do Caso](CASO.html) | Descrição das etapas do estudo de caso |
+| [Todo / Pendências](https://github.com/HDB-ATIVIDADES/case-study/blob/main/todo.md) | Ações pendentes e próximos passos |
 
 ## Etapas
 
 | Etapa | Descrição | Documentação |
 | --- | --- | --- |
-| 1 | Planejamento e Requisitos | [docs](etapa-1/) |
-| 2 | Containerização e Segurança | [docs](etapa-2/) |
-| 3 | Testes e Pipeline CI | [docs](etapa-3/) |
-| 4 | Análise Estática (SAST) | [docs](etapa-4/) |
-| 5 | Análise Dinâmica (DAST) | [docs](etapa-5/) |
-| 6 | Entrega Contínua (CD) | [docs](etapa-6/) |
-| 7 | Monitoramento | [docs](etapa-7/) |
+| 1 | Planejamento e Requisitos | [ver](etapa-1/01-analise.html) |
+| 2 | Containerização e Segurança | [ver](etapa-2/01-container-execucao.html) |
+| 3 | Testes e Pipeline CI | [ver](etapa-3/01-testes.html) |
+| 4 | Análise Estática (SAST) | [ver](etapa-4/01-sast.html) |
+| 5 | Análise Dinâmica (DAST) | [ver](etapa-5/01-dast.html) |
+| 6 | Entrega Contínua (CD) | [ver](etapa-6/01-cd.html) |
+| 7 | Monitoramento | [ver](etapa-7/01-monitoramento.html) |
 
 ## Repositório do Projeto
 

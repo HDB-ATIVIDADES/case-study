@@ -24,12 +24,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate PDF from relatório
+      - name: Generate PDF and HTML from markdown
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+          # PDF
           pandoc docs/relatorio-final.md -o docs/relatorio-final.pdf \
             -V geometry:margin=1.8cm -V fontsize=10pt --pdf-engine=pdflatex
+          # HTML pages (GitHub Pages serves uploaded files as static, .md is not rendered)
+          find docs -name '*.md' ! -path '*/node_modules/*' | while read -r f; do
+            html="${f%.md}.html"
+            pandoc "$f" -o "$html" --standalone --metadata title="Estudo de Caso: DevSecOps"
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
