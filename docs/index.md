@@ -6,7 +6,7 @@ Aplicação de conceitos DevOps e DevSecOps em um sistema de gerenciamento de ta
 
 | Documento | Descrição |
 | --- | --- |
-| [Relatório Final (PDF)](relatorio-final.pdf) | Relatório consolidado do estudo de caso |
+| <a href="relatorio-final.pdf">Relatório Final (PDF)</a> | Relatório consolidado do estudo de caso |
 | {doc}`Enunciado do Caso <CASO>` | Descrição das etapas do estudo de caso |
 | [Todo / Pendências](https://github.com/HDB-ATIVIDADES/case-study/blob/main/todo.md) | Ações pendentes e próximos passos |
 
